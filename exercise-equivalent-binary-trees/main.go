@@ -6,12 +6,11 @@ import (
 )
 
 func Walk(t *tree.Tree, ch chan int) {
-	if t == nil {
-		return
+	if t != nil {
+		ch <- t.Value
+		Walk(t.Left, ch)
+		Walk(t.Right, ch)
 	}
-	ch <- t.Value
-	Walk(t.Left, ch)
-	Walk(t.Right, ch)
 }
 
 func Same(t1, t2 *tree.Tree) bool {
